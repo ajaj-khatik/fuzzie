@@ -92,14 +92,57 @@ export const products = [
 ];
 
 export const menuOptions = [
-  { name: "Dashboard", Component: Home, href: "/dashboard" },
-  { name: "Workflows", Component: Workflows, href: "/workflows" },
-  { name: "Settings", Component: Settings, href: "/settings" },
-  { name: "Connections", Component: Category, href: "/connections" },
-  { name: "Billing", Component: Payment, href: "/billing" },
-  { name: "Templates", Component: Templates, href: "/templates" },
-  { name: "Logs", Component: Logs, href: "/logs" },
+  {
+    name: "Dashboard", Component: Home, href: "/dashboard", submenu: [
+      { name: "Dashboard 1", href: "/Dashboard/profile" },
+      { name: "Dashboard 2", href: "/Dashboard/account" },
+      { name: "Dashboard 3", href: "/Dashboard/account" },
+    ]
+  },
+  {
+    name: "Workflows", Component: Workflows, href: "/workflows", submenu: [
+      { name: "Workflows 1", href: "/Workflows/profile" },
+      { name: "Workflows 2", href: "/Workflows/account" },
+      { name: "Workflows 3", href: "/Workflows/account" },
+    ]
+  },
+  {
+    name: "Settings", Component: Settings, href: "/settings", submenu: [
+      { name: "Settings 1", href: "/Settings/profile" },
+      { name: "Settings 2", href: "/Settings/account" },
+      { name: "Settings 3", href: "/Settings/account" },
+    ]
+  },
+  {
+    name: "Connections", Component: Category, href: "/connections", submenu: [
+      { name: "Connnections 1", href: "/Connections/profile" },
+      { name: "Connnections 2", href: "/Connections/account" },
+      { name: "Connnections 3", href: "/Connections/account" },
+    ]
+  },
+  {
+    name: "Billing", Component: Payment, href: "/billing", submenu: [
+      { name: "Billing 1", href: "/Billing/profile" },
+      { name: "Billing 2", href: "/Billing/account" },
+      { name: "Billing 3", href: "/Billing/account" },
+    ]
+  },
+  {
+    name: "Templates", Component: Templates, href: "/templates", submenu: [
+      { name: "Templates 1", href: "/Templates/profile" },
+      { name: "Templates 2", href: "/Templates/account" },
+      { name: "Templates 3", href: "/Templates/account" },
+    ]
+  },
+  {
+    name: "Logs", Component: Logs, href: "/logs", submenu: [
+      { name: "Logs 1", href: "/Logs/profile" },
+      { name: "Logs 2", href: "/Logs/account" },
+      { name: "Logs 3", href: "/Logs/account" },
+    ]
+  },
 ];
+
 
 export const EditorCanvasDefaultCardTypes = {
   Email: { description: "Send and email to a user", type: "Action" },
