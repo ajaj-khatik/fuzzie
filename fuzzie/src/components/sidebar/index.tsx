@@ -10,11 +10,11 @@ import {
 } from "@/components/ui/tooltip";
 import { menuOptions } from "@/lib/constant";
 import clsx from "clsx";
-// import { Separator } from "@/components/ui/Separator";
 
 const Sidebar = () => {
   const pathName = usePathname();
   const [isHovered, setIsHovered] = useState(false);
+  const [hoveredItem, setHoveredItem] = useState<string | null>(null);
 
   return (
     <nav
@@ -31,9 +31,12 @@ const Sidebar = () => {
             <ul key={menuItem.name} className="w-full">
               <Tooltip delayDuration={0}>
                 <TooltipTrigger asChild>
-                  <li className="flex items-center">
-                    <Link
-                      href={menuItem.href}
+                  <li
+                    className="flex flex-col items-start"
+                    onMouseEnter={() => setHoveredItem(menuItem.name)}
+                    onMouseLeave={() => setHoveredItem(null)}
+                  >
+                    <div
                       className={clsx(
                         "group flex items-center w-full rounded-lg p-[3px] cursor-pointer",
                         {
@@ -50,20 +53,40 @@ const Sidebar = () => {
                       {isHovered && (
                         <span className="ml-4 text-white">{menuItem.name}</span>
                       )}
-                    </Link>
+                    </div>
                   </li>
                 </TooltipTrigger>
                 <TooltipContent
                   side="right"
                   className="bg-black/10 backdrop-blur-xl"
+                  onMouseEnter={() => setHoveredItem(menuItem.name)}
+                  onMouseLeave={() => setHoveredItem(null)}
                 >
-                  <p>{menuItem.name}</p>
+                  <li>
+                    {hoveredItem === menuItem.name &&
+                      menuItem.submenu.length > 0 && (
+                        <ul className="ml-4 mt-2">
+                          {menuItem.submenu.map((subItem) => (
+                            <li key={subItem.name} className="w-full">
+                              <Link
+                                href={subItem.href}
+                                className="flex items-center w-full rounded-lg p-[3px] cursor-pointer"
+                              >
+                                <span className="text-white">
+                                  {subItem.name}
+                                </span>
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                  </li>
                 </TooltipContent>
               </Tooltip>
             </ul>
           ))}
         </TooltipProvider>
-        {/* <Separator /> */}
+
         <div className="flex items-center flex-col gap-9 dark:bg-[#353346]/30 py-4 px-2 rounded-full h-56 overflow-scroll border-[1px]"></div>
       </div>
     </nav>
